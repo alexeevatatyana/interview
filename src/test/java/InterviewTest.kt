@@ -43,8 +43,23 @@ class InterviewTest {
         assertThat(page.aboutButton.text,`is`( "ABOUT"))
     }
 
-    @AfterAll
-    fun driverClose() {
-        driver.close()
+    @DisplayName("Check items under Who We Serve")
+    @Description("Check items under Who We Serve")
+    @Feature("Links")
+    @Test
+    fun checkItems() {
+        val page = MainPage(driver)
+        page.mouseOverWhoWeServe()
+        page.findSubElements()
+        val elementsTexts = page.findSubElements()
+
+
     }
+
+
+
+//    @AfterAll
+//    fun driverClose() {
+//        driver.close()
+//    }
 }
