@@ -11,9 +11,7 @@ import org.openqa.selenium.interactions.Actions
 import java.util.ArrayList
 
 
-class MainPage(driver: WebDriver) {
-
-    val driver = driver
+class MainPage(val driver: WebDriver) {
 
     init {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS)
@@ -55,8 +53,15 @@ class MainPage(driver: WebDriver) {
             .findElements(By.tagName("a"))
         var ElementsTexts = ArrayList<String>()
         whoWeServeElements.forEach{
-            ElementsTexts.add(it.getAttribute("innerHTML"))
+            ElementsTexts.add(it.getAttribute("innerHTML")
+                .replace("\n        ", "")
+                .replace("  ", ""))
         }
         return ElementsTexts
     }
+
+    fun studentsLink (): WebElement? {
+      return driver.findElement(By.cssSelector("[data-ps-id] [href='\\/en-us\\/students']"))
+    }
+
 }
