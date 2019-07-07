@@ -1,11 +1,11 @@
 import io.qameta.allure.Description
 import io.qameta.allure.Feature
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.everyItem
+import org.hamcrest.Matchers.*
 import org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.TestInstance.Lifecycle
+import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import page.MainPage
 import page.Students
@@ -92,15 +92,17 @@ class InterviewTest {
         assertThat(
             studentsPage.studentsHeader.isDisplayed, `is`(true)
         )
+
         //TODO
-        studentsPage.learnMore.forEach {
+        driver.findElements(By.xpath("//*[contains(text(), 'Learn More')]")).forEach {
             assertThat(it.isDisplayed, `is`(true))
-            assertThat(it.getAttribute("href"), `is`("http://www.wileyplus.com/nextgen/"))
+            assertThat(it.findElement(
+                By.xpath("../..")).getAttribute("href"), containsString("www.wileyplus.com"))
         }
     }
 
-//    @AfterAll
-//    fun driverClose() {
-//        driver.close()
-//    }
+    @AfterAll
+    fun driverClose() {
+        driver.close()
+    }
 }

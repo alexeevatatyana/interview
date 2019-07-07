@@ -13,10 +13,11 @@ class Students (val driver: WebDriver) {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS)
         PageFactory.initElements(driver, this)
     }
+
     @FindBy(css = ".sg-title-h1")
     lateinit var studentsHeader: WebElement
 
-    @FindAll(FindBy(xpath = ("//*[contains(text(), 'Be Your Best')]")))
+    //TODO
+    @FindAll(FindBy(xpath = ("//*[contains(text(), 'Learn More')]")))
     lateinit var learnMore: List<WebElement>
-
 }
