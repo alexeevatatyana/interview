@@ -1,7 +1,10 @@
 package page
 
+import org.openqa.selenium.By
+import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.FindAll
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
@@ -20,4 +23,27 @@ class Students (val driver: WebDriver) {
     //TODO
     @FindAll(FindBy(xpath = ("//*[contains(text(), 'Learn More')]")))
     lateinit var learnMore: List<WebElement>
+
+
+    @FindBy(linkText = "SUBJECTS")
+    lateinit var subjectsButton: WebElement
+
+    fun subjectsDropDown(): WebElement {
+        return (driver as JavascriptExecutor).executeScript(
+            "return arguments[0].parentNode;", subjectsButton
+        ) as WebElement
+    }
+
+    fun mouseOverSubjects() {
+        Actions(driver).moveToElement(subjectsDropDown()).build().perform()
+    }
+
+    fun findSubEducation(): WebElement? {
+        return subjectsDropDown()
+            .findElement(By.linkText("Education"))
+    }
+    fun mouseOverEducation() {
+        Actions(driver).moveToElement(findSubEducation()).build().perform()
+    }
+
 }

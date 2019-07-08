@@ -99,6 +99,19 @@ class InterviewTest {
             assertThat(it.findElement(
                 By.xpath("../..")).getAttribute("href"), containsString("www.wileyplus.com"))
         }
+
+        @Test
+        @Order(4)
+        fun checkSubjectsLink() {
+            val studentsPage = Students(driver)
+            studentsPage.mouseOverSubjects()
+            studentsPage.mouseOverEducation()
+
+        }
+
+
+
+
     }
 
     @AfterAll
