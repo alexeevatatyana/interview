@@ -28,6 +28,9 @@ class Students (val driver: WebDriver) {
     @FindBy(linkText = "SUBJECTS")
     lateinit var subjectsButton: WebElement
 
+    @FindBy(css = "[href='\\/en-us\\/']")
+    lateinit var logoButton: WebElement
+
     fun subjectsDropDown(): WebElement {
         return (driver as JavascriptExecutor).executeScript(
             "return arguments[0].parentNode;", subjectsButton
@@ -45,5 +48,13 @@ class Students (val driver: WebDriver) {
     fun mouseOverEducation() {
         Actions(driver).moveToElement(findSubEducation()).build().perform()
     }
+
+    fun subMenuEducation(): List<WebElement>? {
+        return findSubEducation()!!
+            .findElement(By.xpath("./.."))
+            .findElement(By.cssSelector(".sub-list"))
+            .findElements(By.cssSelector(".dropdown-item"))
+    }
+
 
 }

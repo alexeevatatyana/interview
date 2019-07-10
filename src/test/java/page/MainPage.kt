@@ -31,6 +31,10 @@ class MainPage(val driver: WebDriver) {
     lateinit var subjectsButton: WebElement
     @FindBy(linkText = "ABOUT")
     lateinit var aboutButton: WebElement
+    @FindBy(css = ".glyphicon-search")
+    lateinit var searchButton: WebElement
+    @FindBy(xpath = "/html//input[@id='js-site-search-input']")
+    lateinit var searchInput: WebElement
 
 
     fun openPage() {
@@ -62,6 +66,21 @@ class MainPage(val driver: WebDriver) {
 
     fun studentsLink (): WebElement? {
       return driver.findElement(By.cssSelector("[data-ps-id] [href='\\/en-us\\/students']"))
+    }
+
+    fun suggestions(): WebElement? {
+        return driver.findElement(By.cssSelector("[name] aside"))
+    }
+
+    fun inputGroup(): WebElement? {
+        return driver.findElement(By.cssSelector(".input-group"))
+    }
+
+    fun suggestionsResult(): List<WebElement>? {
+      return driver.findElements(By.cssSelector("[name] aside .search-list .search-highlight"))
+    }
+    fun productResult(): List<WebElement>? {
+        return driver.findElements(By.cssSelector("[name] aside .related-content-products .search-highlight"))
     }
 
 }
