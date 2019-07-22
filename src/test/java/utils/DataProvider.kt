@@ -5,6 +5,11 @@ import java.io.UncheckedIOException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import javax.imageio.ImageIO
+import java.awt.image.BufferedImage
+import java.io.ByteArrayOutputStream
+import java.io.File
+
 
 class DataProvider {
     fun getCurrentWorkingDirectory(): Path {
@@ -23,5 +28,13 @@ class DataProvider {
                 throw UncheckedIOException(var2)
             }
         }
+    }
+
+    @Throws(Exception::class)
+    fun imageByte(): ByteArray? {
+//        val bImage = ImageIO.read(File("src/test/resources/pig.png"))
+//        val bos = ByteArrayOutputStream()
+//        ImageIO.write(bImage, "png", bos)
+        return Files.readAllBytes(Paths.get("src/test/resources/1.png"))
     }
 }
