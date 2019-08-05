@@ -37,16 +37,18 @@ class Students (val driver: WebDriver) {
         ) as WebElement
     }
 
-    fun mouseOverSubjects() {
+    fun mouseOverSubjects(): Students {
         Actions(driver).moveToElement(subjectsDropDown()).build().perform()
+        return this
     }
 
     fun findSubEducation(): WebElement? {
         return subjectsDropDown()
             .findElement(By.linkText("Education"))
     }
-    fun mouseOverEducation() {
+    fun mouseOverEducation(): Students {
         Actions(driver).moveToElement(findSubEducation()).build().perform()
+        return this
     }
 
     fun subMenuEducation(): List<WebElement>? {

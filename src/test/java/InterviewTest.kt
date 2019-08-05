@@ -113,9 +113,12 @@ class InterviewTest {
     @Order(4)
     fun checkSubjectsLink() {
         val studentsPage = Students(driver)
-        studentsPage.mouseOverSubjects()
-        studentsPage.mouseOverEducation()
-        val educationSubList = studentsPage.subMenuEducation()
+
+        val educationSubList = studentsPage
+            .mouseOverSubjects()
+            .mouseOverEducation()
+            .subMenuEducation()
+
         var subListTexts = ArrayList<String>()
         educationSubList!!.forEach {
             subListTexts.add(it.findElement(By.tagName("a")).text)
